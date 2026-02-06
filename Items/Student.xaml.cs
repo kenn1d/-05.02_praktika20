@@ -40,8 +40,8 @@ namespace praktika20.Items
                         DoneCount++;
                 }
 
-                StudentWorks = main.AllWorks.FindAll(x => x.IdType != 4
-                    && x.IdType != 3);
+                StudentWorks = main.AllWorks.FindAll(x => (x.IdType != 4
+                    && x.IdType != 5) && x.IdDescipline == StudentDiscipline.Id);
                 WorksCount += StudentWorks.Count;
                 
                 foreach (WorkContext StudentWork in StudentWorks)
@@ -54,9 +54,8 @@ namespace praktika20.Items
                 }
             }
 
-            doneWorks.Value = (100f / (float)NecessarilyCount) * ((float)DoneCount);
-
-            missedCount.Value = (100f / ((float)WorksCount * 90f)) * ((float)MissedCount);
+            doneWorks.Value = 100f / (float)NecessarilyCount * (float)DoneCount;
+            missedCount.Value = 100f / (float)WorksCount * 90 * (float)MissedCount;
             TBGroup.Text = main.AllGroups.Find(x => x.Id == student.IdGroup).Name;
         }
     }

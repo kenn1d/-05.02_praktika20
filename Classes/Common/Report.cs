@@ -62,7 +62,7 @@ namespace praktika20.Classes.Common
                         int AbsenteeismCount = 0;
                         int LateCount = 0;
 
-                        foreach (DisciplineContext StudentDiscipline in Main.AllDisciplines)
+                        foreach (DisciplineContext StudentDiscipline in StudentDisciplines)
                         {
                             List<WorkContext> StudentWorks = Main.AllWorks.FindAll(x => x.IdDescipline == StudentDiscipline.Id);
                             foreach (WorkContext StudentWork in StudentWorks)
