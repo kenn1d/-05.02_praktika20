@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using praktika20.Classes;
+﻿using praktika20.Classes;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -54,6 +53,15 @@ namespace praktika20.Pages
                 SearchStudent = AllStudents.FindAll(x => x.IdGroup == IdGroup);
             }
             CreateStudents(SearchStudent.FindAll(x => $"{x.LastName} {x.FirstName}".Contains(TBFIO.Text)));
+        }
+
+        private void ReportGeneration(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (CBGroups.SelectedIndex != CBGroups.Items.Count - 1)
+            {
+                int IdGroup = AllGroups.Find(x => x.Name == CBGroups.SelectedItem).Id;
+                Classes.Common.Report.Group(IdGroup, this);
+            }
         }
     }
 }
