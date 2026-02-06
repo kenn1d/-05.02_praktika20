@@ -9,7 +9,7 @@ namespace praktika20.Classes
     {
         public EvaluationContext(int id, int idWork, int idStudent, string value, string lateness) : base(id, idWork, idStudent, value, lateness) { }
 
-        public static List<EvaluationContext> AllDisciplines()
+        public static List<EvaluationContext> AllEvaluations()
         {
             List<EvaluationContext> allEvaluations = new List<EvaluationContext>();
 

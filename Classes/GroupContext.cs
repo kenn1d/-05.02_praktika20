@@ -9,7 +9,7 @@ namespace praktika20.Classes
     {
         public GroupContext(int id, string name) : base(id, name) { }
 
-        public static List<GroupContext> AllDisciplines()
+        public static List<GroupContext> AllGroups()
         {
             List<GroupContext> allGroups = new List<GroupContext>();
 

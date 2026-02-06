@@ -10,7 +10,7 @@ namespace praktika20.Classes
     {
         public WorkContext(int id, int idDescipline, int idType, DateTime date, string name, int semester) : base(id, idDescipline, idType, date, name, semester) { }
 
-        public static List<WorkContext> AllDisciplines()
+        public static List<WorkContext> AllWorks()
         {
             List<WorkContext> allWorks = new List<WorkContext>();
 

@@ -10,7 +10,7 @@ namespace praktika20.Classes
     {
         public StudentContext(int id, string firstName, string lastName, int idGroup, bool expelled, DateTime dateExpelled) : base(id, firstName, lastName, idGroup, expelled, dateExpelled) { }
 
-        public static List<StudentContext> AllDisciplines()
+        public static List<StudentContext> AllStudents()
         {
             List<StudentContext> allStudents = new List<StudentContext>();
 
