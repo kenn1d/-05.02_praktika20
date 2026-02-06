@@ -29,7 +29,8 @@ namespace praktika20.Items
             foreach (DisciplineContext StudentDiscipline in StudentDisciplines)
             {
                 List<WorkContext> StudentWorks = main.AllWorks.FindAll(
-                    x => x.IdDescipline == StudentDiscipline.Id);
+                    x => (x.IdType == 1 || x.IdType == 2 || x.IdType == 3) && 
+                    x.IdDescipline == StudentDiscipline.Id);
                 NecessarilyCount += StudentWorks.Count;
                 foreach (WorkContext StudentWork in StudentWorks)
                 {

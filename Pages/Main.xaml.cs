@@ -18,6 +18,7 @@ namespace praktika20.Pages
         public Main()
         {
             InitializeComponent();
+            CreateGroupUI();
         }
 
         public void CreateGroupUI()
