@@ -65,6 +65,8 @@ namespace praktika20.Classes.Common
                         int TheoryCount = 0;
                         int AbsenteeismCount = 0;
                         int LateCount = 0;
+                        string Work = "";
+                        int Grade = 0;
 
                         foreach (DisciplineContext StudentDiscipline in StudentDisciplines)
                         {
@@ -96,6 +98,7 @@ namespace praktika20.Classes.Common
                         //TODO: Добавление студентов в коллекцию лучших
                         perfectStudents.Add(new PerfectStudent(Student, Height, PracticeCount, TheoryCount, AbsenteeismCount, LateCount));
 
+
                         (Worksheet.Cells[Height, 1] as Range).Value = $"{Student.LastName} {Student.FirstName}";
                         Styles(Worksheet.Cells[Height, 1], 12, XlHAlign.xlHAlignLeft, true);
 
@@ -111,6 +114,7 @@ namespace praktika20.Classes.Common
                         (Worksheet.Cells[Height, 5] as Range).Value = LateCount.ToString();
                         Styles(Worksheet.Cells[Height, 5], 12, XlHAlign.xlHAlignCenter, true);
 
+
                         //TODO: Создание листа студента
                         Worksheet WorksheetStudent = Workbook.Worksheets.Add(After: lastSheet);
                         WorksheetStudent.Name = $"#{Student.LastName}";
@@ -121,23 +125,17 @@ namespace praktika20.Classes.Common
                         Styles(WorksheetStudent.Cells[1, 1], 12);
                         Styles(WorksheetStudent.Cells[1, 1], Color.FromArgb(85, 250, 65), true);
 
-                        (WorksheetStudent.Cells[2, 1] as Range).Value = $"Кол-во не сданных практических";
+                        (WorksheetStudent.Cells[2, 1] as Range).Value = $"Наименование работы";
+                        WorksheetStudent.Range[WorksheetStudent.Cells[2, 1], WorksheetStudent.Cells[2, 3]].Merge();
                         Styles(WorksheetStudent.Cells[2, 1], 12, XlHAlign.xlHAlignCenter, true);
-                        (WorksheetStudent.Cells[2, 2] as Range).Value = $"Кол-во не сданных теоретических";
-                        Styles(WorksheetStudent.Cells[2, 2], 12, XlHAlign.xlHAlignCenter, true);
-                        (WorksheetStudent.Cells[2, 3] as Range).Value = $"Отсутствовал на паре";
-                        Styles(WorksheetStudent.Cells[2, 3], 12, XlHAlign.xlHAlignCenter, true);
-                        (WorksheetStudent.Cells[2, 4] as Range).Value = $"Опоздал";
+                        (WorksheetStudent.Cells[2, 4] as Range).Value = $"Оценка";
                         Styles(WorksheetStudent.Cells[2, 4], 12, XlHAlign.xlHAlignCenter, true);
 
-                        (WorksheetStudent.Cells[3, 1] as Range).Value = PracticeCount.ToString();
+                        (WorksheetStudent.Cells[3, 1] as Range).Value = Work;
+                        WorksheetStudent.Range[WorksheetStudent.Cells[3, 1], WorksheetStudent.Cells[3, 3]].Merge();
                         Styles(WorksheetStudent.Cells[3, 1], 12, XlHAlign.xlHAlignCenter, true);
                         (WorksheetStudent.Cells[3, 2] as Range).Value = TheoryCount.ToString();
                         Styles(WorksheetStudent.Cells[3, 2], 12, XlHAlign.xlHAlignCenter, true);
-                        (WorksheetStudent.Cells[3, 3] as Range).Value = AbsenteeismCount.ToString();
-                        Styles(WorksheetStudent.Cells[3, 3], 12, XlHAlign.xlHAlignCenter, true);
-                        (WorksheetStudent.Cells[3, 4] as Range).Value = LateCount.ToString();
-                        Styles(WorksheetStudent.Cells[3, 4], 12, XlHAlign.xlHAlignCenter, true);
 
                         Height++;
                     }
