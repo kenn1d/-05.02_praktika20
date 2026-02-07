@@ -1,9 +1,12 @@
-﻿using Microsoft.Office.Interop.Excel;
-using Microsoft.Win32;
-using praktika20.Models;
+﻿using Microsoft.Win32;
 using praktika20.Pages;
 using System;
 using System.Collections.Generic;
+using Microsoft.Office.Interop.Excel;
+using System.Linq;
+using System.Drawing;
+using System.Windows;
+using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace praktika20.Classes.Common
 {
@@ -53,6 +56,10 @@ namespace praktika20.Classes.Common
 
                     int Height = 5;
                     List<StudentContext> Students = Main.AllStudents.FindAll(x => x.IdGroup == IdGroup);
+
+                    //TODO: Инициализация коллекции лучших
+                    List<PerfectStudent> perfectStudents = new List<PerfectStudent>();
+
                     foreach (StudentContext Student in Students)
                     {
                         List<DisciplineContext> StudentDisciplines = Main.AllDisciplines.FindAll(x => x.IdGroup == Student.IdGroup);
@@ -89,6 +96,9 @@ namespace praktika20.Classes.Common
                             }
                         }
 
+                        //TODO: Добавление студентов в коллекцию лучших
+                        perfectStudents.Add(new PerfectStudent(Student, Height, PracticeCount, TheoryCount, AbsenteeismCount, LateCount));
+
                         (Worksheet.Cells[Height, 1] as Range).Value = $"{Student.LastName} {Student.FirstName}";
                         Styles(Worksheet.Cells[Height, 1], 12, XlHAlign.xlHAlignLeft, true);
 
@@ -106,10 +116,26 @@ namespace praktika20.Classes.Common
 
                         Height++;
                     }
+
+                    //TODO: Выделение лучшего студента
+                    if (perfectStudents != null)
+                    {
+                        var sortStud = perfectStudents.OrderBy(x => x.TotalIssues).ThenBy(x => x.TheoryCount).ThenByDescending(x => x.AbsenteeismCount).ToList();
+                        var bestStud = sortStud[0];
+
+                        Range row = Worksheet.Range[
+                            Worksheet.Cells[bestStud.Row, 1],
+                            Worksheet.Cells[bestStud.Row, 5]];
+
+                        row.Interior.Color = ColorTranslator.ToOle(Color.FromArgb(250, 227, 55));
+                    }
+
                     Workbook.SaveAs(SFD.FileName);
                     Workbook.Close();
                 }
-                catch (Exception exp) { }
+                catch (Exception exp) {
+                    MessageBox.Show($"{exp}", "Внимание, ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
                 ExcelApp.Quit();
             }

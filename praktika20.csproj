@@ -70,6 +70,7 @@
       <HintPath>packages\System.Configuration.ConfigurationManager.8.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
     </Reference>
@@ -126,6 +127,7 @@
     <Compile Include="Classes\Common\Connection.cs" />
     <Compile Include="Classes\DisciplineContext.cs" />
     <Compile Include="Classes\GroupContext.cs" />
+    <Compile Include="Classes\PerfectStudent.cs" />
     <Compile Include="Classes\StudentContext.cs" />
     <Compile Include="Classes\WorkContext.cs" />
     <Compile Include="Items\Student.xaml.cs">

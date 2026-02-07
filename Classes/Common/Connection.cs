@@ -4,7 +4,7 @@ namespace praktika20.Classes.Common
 {
     public class Connection
     {
-        public static string config = "server=localhost;uid=root;database=journal;";
+        public static string config = "server=localhost;port=3322;uid=root;database=journal;";
 
         public static MySqlConnection OpenConnection()
         {
